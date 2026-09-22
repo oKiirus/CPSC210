@@ -1,0 +1,21 @@
+# metadata intentionally _NOT_ ignored:
+# pnpm-lock.yaml
+
+# compiled resources
+dist/
+
+# output files
+out/
+
+# coverage reports
+coverage/
+
+# external modules
+node_modules/
+.pnpm-store/
+
+.idea/
+
+# built by `pnpm start` from src/browser.ts; never edit by hand
+public/app.js
+public/app.js.map

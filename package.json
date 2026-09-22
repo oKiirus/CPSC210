@@ -1,0 +1,41 @@
+{
+  "//": [
+    "This is your 210 project's package.json file.",
+    "You can modify this file to add your own dependencies",
+    "and scripts. This is because the project isn't autograded.",
+    "It has the same packages as the labs, without the course",
+    "toolkit. The Result type is in src/result.ts."
+  ],
+  "name": "cpsc210-project",
+  "version": "0.0.1",
+  "author": "YOU!",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:cover": "vitest run --coverage",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format .",
+    "format:fix": "biome format --write .",
+    "start": "tsx src/start.ts"
+  },
+  "dependencies": {
+    "chart.js": "4.5.1",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.5",
+    "@testing-library/dom": "10.4.2",
+    "@testing-library/user-event": "14.6.7",
+    "@types/node": "25.6.2",
+    "@vitest/coverage-v8": "4.1.10",
+    "esbuild": "0.28.2",
+    "jsdom": "27.4.0",
+    "tsx": "4.23.1",
+    "typescript": "7.0.2",
+    "vitest": "4.1.10"
+  }
+}

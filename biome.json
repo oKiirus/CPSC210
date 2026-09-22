@@ -1,0 +1,122 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.5.5/schema.json",
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": false
+	},
+	"files": {
+		"includes": ["**/src/**/*.ts", "**/test/**/*.ts"],
+		"ignoreUnknown": true
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab",
+		"lineWidth": 120,
+		"lineEnding": "lf"
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "double",
+			"semicolons": "always",
+			"trailingCommas": "all",
+			"arrowParentheses": "always"
+		},
+		"globals": ["$", "_"]
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"preset": "none",
+			"complexity": {
+				"noExcessiveLinesPerFunction": {
+					"level": "error",
+					"options": {
+						"maxLines": 35,
+						"skipBlankLines": true,
+						"skipIifes": false
+					}
+				},
+				"useLiteralKeys": "error",
+				"useOptionalChain": "error"
+			},
+			"correctness": {
+				"noUnusedVariables": "error"
+			},
+			"performance": {
+				"noAwaitInLoops": "error"
+			},
+			"security": {
+				"noGlobalEval": "error"
+			},
+			"style": {
+				"noExcessiveLinesPerFile": {
+					"level": "error",
+					"options": {
+						"maxLines": 300,
+						"skipBlankLines": true
+					}
+				},
+				"useConsistentMemberAccessibility": {
+					"level": "error",
+					"options": {
+						"accessibility": "explicit"
+					}
+				},
+				"useConst": "error",
+				"useForOf": "error",
+				"useNamingConvention": {
+					"level": "error",
+					"options": {
+						"strictCase": false
+					}
+				},
+				"useFilenamingConvention": {
+					"level": "error",
+					"options": {
+						"strictCase": false,
+						"filenameCases": ["camelCase", "PascalCase"]
+					}
+				}
+			},
+			"suspicious": {
+				"noAsyncPromiseExecutor": "error",
+				"noConfusingVoidType": "error",
+				"noConsole": "error",
+				"noDoubleEquals": "error",
+				"noExplicitAny": "error",
+				"noShadow": "error",
+				"noVar": "error",
+				"useAwait": "error"
+			},
+			"nursery": {
+				"noExcessiveNestedCallbacks": {
+					"level": "error",
+					"options": {
+						"max": 5
+					}
+				},
+				"noIdenticalTestTitle": "error",
+				"noImpliedEval": "error",
+				"useAwaitThenable": "error",
+				"useExplicitReturnType": "error",
+				"useExplicitType": "error"
+			}
+		}
+	},
+	"overrides": [
+		{
+			"includes": ["**/test/**/*.ts"],
+			"linter": {
+				"rules": {
+					"complexity": {
+						"noExcessiveLinesPerFunction": "off"
+					},
+					"style": {
+						"noExcessiveLinesPerFile": "off"
+					}
+				}
+			}
+		}
+	]
+}
