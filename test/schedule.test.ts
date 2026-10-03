@@ -38,7 +38,7 @@ describe("getAmountOfPossibleSchedules", () => {
     ]
 
 	test("returns correct value", async () => {
-		expect.soft(getAmountOfPossibleSchedules(classes)).equal(105)
+		expect.soft(getAmountOfPossibleSchedules(classes)).equal(3 * 4 * 5)
 	});
 
 

@@ -18,15 +18,8 @@ export function getPeriodPossibiliy(i: number, classes: Class[]) : number[]{
 export function getAmountOfPossibleSchedules(classes: Class[]): number { //Done
     const amountOfPeriods: number[] = classes.map((cl : Class) => cl.periods.length)
 
-    return amountOfPeriods.reduce((sum: number, amount: number, i: number) => {
-        const totalMult: number = amountOfPeriods.reduce((mult: number, amountMult: number, j: number) => {
-            if(j < i) {
-                return mult * (amountMult + 2)
-            } else {
-                return mult;
-            }
-        })
-        return sum + totalMult * amount;
+    return amountOfPeriods.reduce((mult: number, amount: number) => {
+        return mult * amount;
     })
 }
 
