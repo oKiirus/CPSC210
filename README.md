@@ -17,7 +17,7 @@ Instead of focusing on organising the classes and periods, i will also add the f
 
 ## User Stories
 
-### Story 1: <Technical_Worker>
+### Story 1: <Creating_Classes>
 
 #### Statement
 
@@ -32,23 +32,23 @@ As a student at a university, I want to send in the periods for a class so that 
 * Given no periods, I recive an error saying there are no periods
 
 
-### Story 2: <Simple_Student>
+### Story 2: <Creating_Periods>
 
 #### Statement
 
-As a student at a university, I want to send in the times for a period, so that i can create a period to add to a class
+As a student at a university, I want to send in the times for a period, so that I can create a period to add to a class
 
 
 #### Success Criteria
 
-* Given times for a periods, I want to submit them with a name to create a period, so I can creae a compact object for the period
+* Given times for a periods, I want to submit them with a name to create a period, so I can create a compact object for the period
 
 #### Error Criteria
 
 * Given no times, I recive an error saying there are no times
 
 
-### Story 3: <Best_Schedule>
+### Story 3: <Possible_Periods>
 
 #### Statement
 
@@ -64,7 +64,7 @@ As a student at a university, I want to know the possible combinations of classe
 * Given no periods, I recieve an error that there are no periods
 
 
-### Story 4: <Filtering_Schedules>
+### Story 4: <Conflict>
 
 #### Statement
 
