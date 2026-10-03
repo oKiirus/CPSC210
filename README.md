@@ -21,71 +21,61 @@ Instead of focusing on organising the classes and periods, i will also add the f
 
 #### Statement
 
-As a technical worker at a university, I want to be able to orgaize each students schedule into a compact format, so that I am able to check and modify each schedule with ease.
+As a student at a university, I want to send in the periods for a class so that I can see what times the class can occur.
 
 #### Success Criteria
 
-* Given a students schedule with 5 classes and a period chosen for each, I am able to create a JSON file that contains all the info
-* Given a array of student scedules, I am able to easily check if each schedule has no conflicting courses
-* Given a students schedule, and the classes they have taken, I am able to easily check if they are able to take the classes in their schedule
+* Given periods for a class, I want to submit them with a name for the class, so I can creae a compact object for the class
 
 #### Error Criteria
 
-* Given a students schedule with 5 classes and multiple periods chosen for each, I recience an error saying that a class in a scedule cannot contain multiple periods
+* Given no periods, I recive an error saying there are no periods
 
 
 ### Story 2: <Simple_Student>
 
 #### Statement
 
-As a student at a university, I want to send in the classes I want to take and their possible periods, so that I am able see every possible Scedule that has no conflicts
+As a student at a university, I want to send in the times for a period, so that i can create a period to add to a class
 
 
 #### Success Criteria
 
-* Given classes and their periods, I am able to see each possible scedule that can be achieved with the courses
+* Given times for a periods, I want to submit them with a name to create a period, so I can creae a compact object for the period
 
 #### Error Criteria
 
-* Given classes without their periods, I get an error that says a class must contain a period
+* Given no times, I recive an error saying there are no times
 
 
 ### Story 3: <Best_Schedule>
 
 #### Statement
 
-As a student at a university, I want to send in the possible scedules I could take, so that I get the schedules that maximise some value
+As a student at a university, I want to know the possible combinations of classes, so I can know how many possible scedules are possible
 
 #### Success Criteria
 
-* Given the possible scedules I could take, I recieve the schedule(s) with the least/most total time at uni
-* Given the possible scedules I could take, I recieve the schedule(s) with the least/most total days at uni
+* Given 3 classes with 3, 4 and 5 periods, then I recieve that there are 105 possible combinations 
 
-* Given the possible scedules I could take, I recieve the schedule(s) with the least/most total time at uni
-* Given the possible scedules I could take, I recieve the schedule(s) with the least/most total days at uni
 
 #### Error Criteria
 
-* Given a scedule with conflicting courses, I recieve an error that says the scedule is invalid
+* Given no periods, I recieve an error that there are no periods
 
 
 ### Story 4: <Filtering_Schedules>
 
 #### Statement
 
-As a student at a university, I want to send in the possible scedules I can take, so that I can filter out the scedules that conflict with my personal needs
-
+As a student at a university, I want to know if two periods conflict easily, so I can plan my scedule faster
 #### Success Criteria
 
-* Given the possible scedules I could take, I recieve all the scedules that have at most X days where I am at uni longer than some chosen time
-* Given the possible scedules I could take, I recieve all the scedules that have at most X days where I am at uni shorter than some chosen time
-* Given the possible scedules I could take, I recieve all the scedules where at least X courses start after some time
-* Given the possible scedules I could take, I recieve all the scedules where at least X courses end before some time
-* Given the possible scedules I could take, I recieve all the scedules where there are no courses that conflict with a chosen time period
+* Given two periods (5 - 7) and (6 - 8), I recieve the info that they conflict 
 
 #### Error Criteria
 
-* Given a time period, or any time outside of a possible day, I recieve an error saying my time chosen is invalid
+* Given two courses with invalid times (-1 - 4) or (23 - 25), I recieve an error
 
 
 
