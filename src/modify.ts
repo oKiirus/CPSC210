@@ -1,7 +1,3 @@
-import {Period, Class, Day, Schedule} from "./types.ts"
-import {err, ok, Result} from "./result.ts"
-import {makePeriod, makeClass} from "./constructors.ts"
-
-
-
-
+import { makeClass, makePeriod } from "./constructors.ts";
+import { err, ok, Result } from "./result.ts";
+import { Class, Day, Period, Schedule } from "./types.ts";
