@@ -1,42 +1,13 @@
-import { makeClass, makePeriod } from "./constructors.ts";
 import { err, ok, Result } from "./result.ts";
-import { Class, Day, Period, Schedule, Section, SectionGroup } from "./types.ts";
+import { Class, Day, Period, Schedule, Section, SectionGroup } from "./classes.ts";
 
-type Conflict = { periodA: Period; periodB: Period };
 
-function doPeriodsOverlap(periodA: Period, periodB: Period): boolean {
-	if (periodA.day !== periodB.day) {
-		return false;
-	}
 
-	let smaller: Period;
-	let bigger: Period;
-
-	if (periodA.duration < periodB.duration) {
-		smaller = periodA;
-		bigger = periodB;
-	} else {
-		smaller = periodB;
-		bigger = periodA;
-	}
-
-	const smallerEndTime = smaller.startTime + smaller.duration;
-
-	if (smaller.startTime > bigger.startTime && smaller.startTime < bigger.startTime + bigger.duration) {
-		return true;
-	}
-	if (smallerEndTime > bigger.startTime && smallerEndTime < bigger.startTime + bigger.duration) {
-		return true;
-	}
-
-	return false;
-}
-
-export function doesPeriodArrayOverlap(periods: Period[]): boolean {
+export function doPeriodsOverlap(periods: Period[]): boolean {
 	for (const periodA of periods) {
 		for (const periodB of periods) {
 			if (periodA === periodB) continue;
-			if (doPeriodsOverlap(periodA, periodB)) {
+			if (periodA.checkOverlap(periodB)) {
 				return true;
 			}
 		}
@@ -44,17 +15,11 @@ export function doesPeriodArrayOverlap(periods: Period[]): boolean {
 	return false;
 }
 
-export function doSectionsOverlap(sectionA: Section, sectionB: Section): boolean {
-	const allPeriods: Period[] = sectionA.periods.concat(sectionA.periods);
-
-	return doesPeriodArrayOverlap(allPeriods);
-}
-
-export function doesSectionArrayOverlap(sections: Section[]): boolean {
+export function doSectionsOverlap(sections: Section[]): boolean {
 	for (const sectionA of sections) {
 		for (const sectionB of sections) {
 			if (sectionA === sectionB) continue;
-			if (doSectionsOverlap(sectionA, sectionB)) {
+			if (sectionA.checkOverlap(sectionB)) {
 				return true;
 			}
 		}
@@ -81,9 +46,7 @@ function stepIndexArray(indexArray: number[], maxIndexes: number[]): boolean {
 	return true;
 }
 
-function addClassToSchedule(schedule: Schedule, cl: Class, sections: Section[]): void {
-	schedule.registeredClasses.push({ class: cl, registeredSections: sections });
-}
+
 
 export function getPossibleSchedules(classes: Class[]): Schedule[] {
 	const possibleSchedules: Schedule[] = [];
@@ -101,13 +64,13 @@ export function getPossibleSchedules(classes: Class[]): Schedule[] {
 			sectionsAttempt.push(group.sections[sectionGroupIndexes[i]]);
 		}
 
-		if (!doesSectionArrayOverlap(sectionsAttempt)) {
-			const possibleSchedule: Schedule = { registeredClasses: [] };
+		if (!doSectionsOverlap(sectionsAttempt)) {
+			const possibleSchedule: Schedule = new Schedule();
 			for (const cl of classes) {
 				const classSections: Section[] = sectionsAttempt.filter(
 					(section: Section) => section.className === cl.description.name,
 				);
-				addClassToSchedule(possibleSchedule, cl, classSections);
+				possibleSchedule.addClass(cl, classSections);
 			}
 			possibleSchedules.push(possibleSchedule);
 		}
