@@ -1,3 +1,7 @@
+import { err, ok, Result } from "../result.ts";
+import { Class, Day, Period, Schedule, Section, SectionGroup, User } from "../classes.ts";
+import { readJsonFile, writeJsonFile} from "./persistence.ts";
+
 /**
  * The state your handlers work on. Every handler receives this state.
  *
@@ -5,7 +9,10 @@
  * elements you need to share across your system.
  */
 export type AppService = {
-	name: string;
+	path: string
+	currentUser: User | undefined
+	users: User[]
+	classes: Class[]
 };
 
 /**
@@ -16,6 +23,45 @@ export type AppService = {
  * @returns the service handlers will be given
  */
 export async function startService(): Promise<AppService> {
-	await Promise.resolve(); // in Phase 2, load saved state here
-	return { name: "210-project" };
+	return await loadService("src/database/mainService.json")
+}
+
+
+
+export async function loadService(path: string): Promise<AppService> {
+	
+	const fileData = await readJsonFile(path)
+
+	if(!fileData.ok){
+		throw new Error(fileData.error)
+	}
+
+	const data = fileData.value;
+    if (typeof data !== "object" || data === null) {
+        throw new Error(path + " must contain a JSON object");
+    }
+
+    const raw = data as Record<string, unknown>;
+    if (!Array.isArray(raw.users) || !Array.isArray(raw.classes)) {
+        throw new Error(path + " must contain 'users' and 'classes' arrays");
+    }
+
+    return {
+        path,
+        currentUser: undefined,
+        users: raw.users as User[],
+        classes: raw.classes as Class[],
+    };
+
+
+}
+
+export async function saveService(service : AppService) {
+	
+	const fileData = await writeJsonFile(service.path, service)
+
+	if(!fileData.ok){
+		throw new Error(fileData.error)
+	}
+
 }

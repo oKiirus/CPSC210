@@ -1,0 +1,12 @@
+{
+  "path": "src/database/mainService.json",
+  "users": [
+    {
+      "name": "Bob",
+      "classesTaken": [],
+      "classesWanted": [],
+      "possibleSchedules": []
+    }
+  ],
+  "classes": []
+}

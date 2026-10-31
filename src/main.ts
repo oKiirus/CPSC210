@@ -1,5 +1,5 @@
 import { err, ok, Result } from "./result.ts";
-import { Class, Day, Period, Schedule, Section, SectionGroup } from "./classes.ts";
+import { Class, Day, Period, Schedule, Section, SectionGroup, User } from "./classes.ts";
 
 
 
@@ -48,7 +48,7 @@ function stepIndexArray(indexArray: number[], maxIndexes: number[]): boolean {
 
 
 
-export function getPossibleSchedules(classes: Class[]): Schedule[] {
+export function generatePossibleSchedules(classes: Class[]): Schedule[] {
 	const possibleSchedules: Schedule[] = [];
 
 	const allSectionGroups: SectionGroup[] = [];

@@ -1,6 +1,7 @@
 import { hasDuplicates } from "./helper.ts";
 import { doPeriodsOverlap, doSectionsOverlap } from "./main.ts";
 import { err, ok, Result } from "./result.ts";
+import { generatePossibleSchedules } from './main';
 
 export type Day = "M" | "T" | "W" | "Th" | "F" | "S" | "Su";
 export type SectionType = "Lecture" | "Lab" | "Discussion";
@@ -250,3 +251,50 @@ export class Schedule {
 	}
 	
 };
+
+export class User {
+	private name : string
+	private classesTaken : Class[] = []
+	private classesWanted : Class[] = []
+	private possibleSchedules : Schedule[] = []
+
+	constructor(name : string){
+		this.name = name
+	}
+
+	getName() : string {
+		return this.name;
+	}
+
+	addTakenClass(cl : Class){
+		this.classesTaken.push(cl)
+	}
+
+	removeTakenClass(cl : string){
+		const newClassesTaken : Class[] = this.classesTaken.filter((currentClass : Class) => currentClass.description.name !== cl)
+		if(newClassesTaken.length === this.classesTaken.length) {
+			throw new Error("Class is not taken")
+		}
+		this.classesTaken = newClassesTaken
+	}
+
+	addWantedClass(cl : Class){
+		this.classesWanted.push(cl)
+	}
+
+	removeWantedClass(cl : string){
+		const newClassesWanted : Class[] = this.classesWanted.filter((currentClass : Class) => currentClass.description.name !== cl)
+		if(newClassesWanted.length === this.classesWanted.length) {
+			throw new Error("Class is not wanted")
+		}
+		this.classesWanted = newClassesWanted
+	}
+
+	generatePossibleSchedules() : void {
+		this.possibleSchedules = generatePossibleSchedules(this.classesWanted)
+	}
+
+	getPossibleSchedules() {
+		return this.possibleSchedules
+	}
+}
